@@ -1,0 +1,2836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luna Laundry - Premium Laundry Delivery Service</title>
+    <style>
+        /* Design System CSS */
+        :root {
+            /* Primitive Color Tokens */
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-teal-800: rgba(41, 150, 161, 1);
+            --color-red-400: rgba(255, 84, 89, 1);
+            --color-red-500: rgba(192, 21, 47, 1);
+            --color-orange-400: rgba(230, 129, 97, 1);
+            --color-orange-500: rgba(168, 75, 47, 1);
+
+            /* RGB versions for opacity control */
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-slate-900-rgb: 19, 52, 59;
+            --color-slate-500-rgb: 98, 108, 113;
+            --color-red-500-rgb: 192, 21, 47;
+            --color-red-400-rgb: 255, 84, 89;
+            --color-orange-500-rgb: 168, 75, 47;
+            --color-orange-400-rgb: 230, 129, 97;
+
+            /* Background color tokens (Light Mode) */
+            --color-bg-1: rgba(59, 130, 246, 0.08);
+            --color-bg-2: rgba(245, 158, 11, 0.08);
+            --color-bg-3: rgba(34, 197, 94, 0.08);
+            --color-bg-4: rgba(239, 68, 68, 0.08);
+            --color-bg-5: rgba(147, 51, 234, 0.08);
+            --color-bg-6: rgba(249, 115, 22, 0.08);
+            --color-bg-7: rgba(236, 72, 153, 0.08);
+            --color-bg-8: rgba(6, 182, 212, 0.08);
+
+            /* Semantic Color Tokens (Light Mode) */
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-text-secondary: var(--color-slate-500);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --color-primary-active: var(--color-teal-700);
+            --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-btn-primary-text: var(--color-cream-50);
+            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-error: var(--color-red-500);
+            --color-success: var(--color-teal-500);
+            --color-warning: var(--color-orange-500);
+            --color-info: var(--color-slate-500);
+            --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+            --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+            /* Common style patterns */
+            --focus-ring: 0 0 0 3px var(--color-focus-ring);
+            --focus-outline: 2px solid var(--color-primary);
+            --status-bg-opacity: 0.15;
+            --status-border-opacity: 0.25;
+
+            /* RGB versions for opacity control */
+            --color-success-rgb: 33, 128, 141;
+            --color-error-rgb: 192, 21, 47;
+            --color-warning-rgb: 168, 75, 47;
+            --color-info-rgb: 98, 108, 113;
+
+            /* Typography */
+            --font-family-base: "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            --font-size-xs: 11px;
+            --font-size-sm: 12px;
+            --font-size-base: 14px;
+            --font-size-md: 14px;
+            --font-size-lg: 16px;
+            --font-size-xl: 18px;
+            --font-size-2xl: 20px;
+            --font-size-3xl: 24px;
+            --font-size-4xl: 30px;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 550;
+            --font-weight-bold: 600;
+            --line-height-tight: 1.2;
+            --line-height-normal: 1.5;
+            --letter-spacing-tight: -0.01em;
+
+            /* Spacing */
+            --space-0: 0;
+            --space-1: 1px;
+            --space-2: 2px;
+            --space-4: 4px;
+            --space-6: 6px;
+            --space-8: 8px;
+            --space-10: 10px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+            --space-32: 32px;
+
+            /* Border Radius */
+            --radius-sm: 6px;
+            --radius-base: 8px;
+            --radius-md: 10px;
+            --radius-lg: 12px;
+            --radius-full: 9999px;
+
+            /* Shadows */
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+            --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+
+            /* Animation */
+            --duration-fast: 150ms;
+            --duration-normal: 250ms;
+            --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+            /* Layout */
+            --container-sm: 640px;
+            --container-md: 768px;
+            --container-lg: 1024px;
+            --container-xl: 1280px;
+        }
+
+        /* Base styles */
+        html {
+            font-size: var(--font-size-base);
+            font-family: var(--font-family-base);
+            line-height: var(--line-height-normal);
+            color: var(--color-text);
+            background-color: var(--color-background);
+            -webkit-font-smoothing: antialiased;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+            font-weight: var(--font-weight-semibold);
+            line-height: var(--line-height-tight);
+            color: var(--color-text);
+            letter-spacing: var(--letter-spacing-tight);
+        }
+
+        h1 { font-size: var(--font-size-4xl); }
+        h2 { font-size: var(--font-size-3xl); }
+        h3 { font-size: var(--font-size-2xl); }
+        h4 { font-size: var(--font-size-xl); }
+        h5 { font-size: var(--font-size-lg); }
+        h6 { font-size: var(--font-size-md); }
+
+        p {
+            margin: 0 0 var(--space-16) 0;
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color var(--duration-fast) var(--ease-standard);
+        }
+
+        a:hover {
+            color: var(--color-primary-hover);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-8) var(--space-16);
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-base);
+            font-weight: 500;
+            line-height: 1.5;
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            border: none;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .btn:focus-visible {
+            outline: none;
+            box-shadow: var(--focus-ring);
+        }
+
+        .btn--primary {
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+        }
+
+        .btn--primary:hover {
+            background: var(--color-primary-hover);
+        }
+
+        .btn--primary:active {
+            background: var(--color-primary-active);
+        }
+
+        .btn--secondary {
+            background: var(--color-secondary);
+            color: var(--color-text);
+        }
+
+        .btn--secondary:hover {
+            background: var(--color-secondary-hover);
+        }
+
+        .btn--secondary:active {
+            background: var(--color-secondary-active);
+        }
+
+        .btn--outline {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+        }
+
+        .btn--outline:hover {
+            background: var(--color-secondary);
+        }
+
+        .btn--sm {
+            padding: var(--space-4) var(--space-12);
+            font-size: var(--font-size-sm);
+            border-radius: var(--radius-sm);
+        }
+
+        .btn--lg {
+            padding: var(--space-10) var(--space-20);
+            font-size: var(--font-size-lg);
+            border-radius: var(--radius-md);
+        }
+
+        .btn--full-width {
+            width: 100%;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Form elements */
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: var(--space-8) var(--space-12);
+            font-size: var(--font-size-md);
+            line-height: 1.5;
+            color: var(--color-text);
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+        }
+
+        .form-control:focus {
+            border-color: var(--color-primary);
+            outline: var(--focus-outline);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--space-8);
+            font-weight: var(--font-weight-medium);
+            font-size: var(--font-size-sm);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-16);
+        }
+
+        /* Card component */
+        .card {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-card-border);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: box-shadow var(--duration-normal) var(--ease-standard);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .card__body {
+            padding: var(--space-16);
+        }
+
+        .card__header, .card__footer {
+            padding: var(--space-16);
+            border-bottom: 1px solid var(--color-card-border-inner);
+        }
+
+        /* Status indicators */
+        .status {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--space-6) var(--space-12);
+            border-radius: var(--radius-full);
+            font-weight: var(--font-weight-medium);
+            font-size: var(--font-size-sm);
+        }
+
+        .status--success {
+            background-color: rgba(var(--color-success-rgb, 33, 128, 141), var(--status-bg-opacity));
+            color: var(--color-success);
+            border: 1px solid rgba(var(--color-success-rgb, 33, 128, 141), var(--status-border-opacity));
+        }
+
+        .status--error {
+            background-color: rgba(var(--color-error-rgb, 192, 21, 47), var(--status-bg-opacity));
+            color: var(--color-error);
+            border: 1px solid rgba(var(--color-error-rgb, 192, 21, 47), var(--status-border-opacity));
+        }
+
+        .status--warning {
+            background-color: rgba(var(--color-warning-rgb, 168, 75, 47), var(--status-bg-opacity));
+            color: var(--color-warning);
+            border: 1px solid rgba(var(--color-warning-rgb, 168, 75, 47), var(--status-border-opacity));
+        }
+
+        .status--info {
+            background-color: rgba(var(--color-info-rgb, 98, 108, 113), var(--status-bg-opacity));
+            color: var(--color-info);
+            border: 1px solid rgba(var(--color-info-rgb, 98, 108, 113), var(--status-border-opacity));
+        }
+
+        /* Container layout */
+        .container {
+            width: 100%;
+            margin-right: auto;
+            margin-left: auto;
+            padding-right: var(--space-16);
+            padding-left: var(--space-16);
+        }
+
+        @media (min-width: 640px) {
+            .container { max-width: var(--container-sm); }
+        }
+        @media (min-width: 768px) {
+            .container { max-width: var(--container-md); }
+        }
+        @media (min-width: 1024px) {
+            .container { max-width: var(--container-lg); }
+        }
+        @media (min-width: 1280px) {
+            .container { max-width: var(--container-xl); }
+        }
+
+        /* Utility classes */
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-4 { gap: var(--space-4); }
+        .gap-8 { gap: var(--space-8); }
+        .gap-16 { gap: var(--space-16); }
+        .gap-24 { gap: var(--space-24); }
+
+        .m-0 { margin: 0; }
+        .mt-8 { margin-top: var(--space-8); }
+        .mb-8 { margin-bottom: var(--space-8); }
+        .mx-8 { margin-left: var(--space-8); margin-right: var(--space-8); }
+        .my-8 { margin-top: var(--space-8); margin-bottom: var(--space-8); }
+
+        .p-0 { padding: 0; }
+        .py-8 { padding-top: var(--space-8); padding-bottom: var(--space-8); }
+        .px-8 { padding-left: var(--space-8); padding-right: var(--space-8); }
+        .py-16 { padding-top: var(--space-16); padding-bottom: var(--space-16); }
+        .px-16 { padding-left: var(--space-16); padding-right: var(--space-16); }
+        .py-32 { padding-top: var(--space-32); padding-bottom: var(--space-32); }
+        .px-32 { padding-left: var(--space-32); padding-right: var(--space-32); }
+
+        .block { display: block; }
+        .hidden { display: none; }
+        .text-center { text-align: center; }
+
+        /* Demo page specific styles */
+        .demo-map-view {
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+        
+        @media (max-width: 768px) {
+            .demo-top-row {
+                grid-template-columns: 1fr !important;
+            }
+            
+            #map-controls {
+                flex-direction: column;
+                gap: var(--space-4) !important;
+            }
+            
+            #map-controls button {
+                width: 100%;
+            }
+        }
+        
+        /* Custom styles for the app */
+        .navbar {
+            background: var(--color-surface);
+            border-bottom: 1px solid var(--color-card-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar__content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-12) 0;
+        }
+
+        .navbar__brand {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+        }
+
+        .navbar__links {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .navbar__links {
+                display: flex;
+                gap: var(--space-24);
+                align-items: center;
+            }
+        }
+
+        .navbar__link {
+            color: var(--color-text-secondary);
+            font-weight: var(--font-weight-medium);
+            cursor: pointer;
+        }
+
+        .navbar__link:hover {
+            color: var(--color-text);
+        }
+
+        .navbar__link.active {
+            color: var(--color-primary);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--color-bg-1), var(--color-bg-3));
+            padding: var(--space-32) 0;
+        }
+
+        .hero__content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .hero__title {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--space-16);
+        }
+
+        .hero__subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-32);
+        }
+
+        .hero__actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-16);
+            align-items: center;
+        }
+
+        @media (min-width: 640px) {
+            .hero__actions {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        .features {
+            padding: var(--space-32) 0;
+        }
+
+        .features__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-24);
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: var(--space-24);
+        }
+
+        .feature-card__icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-16);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-24);
+            margin: var(--space-32) 0;
+        }
+
+        .pricing-card {
+            position: relative;
+            transition: transform var(--duration-normal) var(--ease-standard);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .pricing-card--featured {
+            border: 2px solid var(--color-primary);
+        }
+
+        .pricing-card__badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            padding: var(--space-4) var(--space-16);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .pricing-card__price {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-8);
+        }
+
+        .pricing-card__period {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-16);
+        }
+
+        .pricing-card__features {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-20) 0;
+        }
+
+        .pricing-card__feature {
+            padding: var(--space-8) 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-card__feature::before {
+            content: "✓";
+            color: var(--color-success);
+            font-weight: bold;
+            margin-right: var(--space-8);
+        }
+
+        .checkout-progress {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--space-32);
+        }
+
+        .checkout-step {
+            display: flex;
+            align-items: center;
+            margin-right: var(--space-16);
+        }
+
+        .checkout-step__number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--color-secondary);
+            color: var(--color-text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: var(--font-weight-bold);
+            margin-right: var(--space-8);
+        }
+
+        .checkout-step--active .checkout-step__number {
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+        }
+
+        .checkout-step--completed .checkout-step__number {
+            background: var(--color-success);
+            color: var(--color-btn-primary-text);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-24);
+        }
+
+        @media (min-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .tracking-map {
+            height: 400px;
+            background: var(--color-bg-1);
+            border-radius: var(--radius-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--color-surface);
+            transition: all var(--duration-fast) ease;
+        }
+
+        .map-marker--customer {
+            background: var(--color-primary);
+            top: 70%;
+            left: 30%;
+        }
+
+        .map-marker--operator {
+            background: var(--color-warning);
+            top: 30%;
+            left: 60%;
+        }
+
+        .map-route {
+            position: absolute;
+            top: 35%;
+            left: 35%;
+            width: 25%;
+            height: 35%;
+            border: 2px dashed var(--color-primary);
+            border-radius: var(--radius-base);
+            opacity: 0.6;
+        }
+
+        .eta-display {
+            text-align: center;
+            padding: var(--space-24);
+            background: var(--color-bg-3);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-16);
+        }
+
+        .eta-display__time {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-success);
+            margin-bottom: var(--space-8);
+        }
+
+        .timeline {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline__item {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-16);
+        }
+
+        .timeline__marker {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--color-secondary);
+            margin-right: var(--space-12);
+            flex-shrink: 0;
+        }
+
+        .timeline__marker--completed {
+            background: var(--color-success);
+        }
+
+        .timeline__marker--active {
+            background: var(--color-primary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .chat-widget {
+            position: fixed;
+            bottom: var(--space-20);
+            right: var(--space-20);
+            z-index: 1000;
+        }
+
+        .chat-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .chat-window {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 320px;
+            height: 400px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            transform: translateY(20px) scale(0.9);
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .chat-window.show {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .chat-header {
+            padding: var(--space-16);
+            border-bottom: 1px solid var(--color-card-border-inner);
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: var(--space-8);
+            overflow-y: auto;
+        }
+
+        .chat-message {
+            margin-bottom: var(--space-12);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-message--customer {
+            align-items: flex-end;
+        }
+
+        .chat-message--operator {
+            align-items: flex-start;
+        }
+
+        .chat-bubble {
+            max-width: 80%;
+            padding: var(--space-8) var(--space-12);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-sm);
+        }
+
+        .chat-bubble--customer {
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+        }
+
+        .chat-bubble--operator {
+            background: var(--color-secondary);
+            color: var(--color-text);
+        }
+
+        .chat-input {
+            display: flex;
+            padding: var(--space-8);
+            border-top: 1px solid var(--color-card-border-inner);
+        }
+
+        .chat-input input {
+            flex: 1;
+            border: none;
+            padding: var(--space-8);
+            border-radius: var(--radius-base);
+            background: var(--color-background);
+            margin-right: var(--space-8);
+        }
+
+        .chat-input button {
+            padding: var(--space-8) var(--space-12);
+        }
+
+        .operator-jobs {
+            display: grid;
+            gap: var(--space-16);
+        }
+
+        .job-card {
+            padding: var(--space-16);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            background: var(--color-surface);
+        }
+
+        .job-card__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-12);
+        }
+
+        .job-card__details {
+            margin-bottom: var(--space-16);
+        }
+
+        .job-card__detail {
+            display: flex;
+            margin-bottom: var(--space-4);
+        }
+
+        .job-card__label {
+            font-weight: var(--font-weight-medium);
+            width: 100px;
+            flex-shrink: 0;
+        }
+
+        .earnings-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-16);
+            margin-bottom: var(--space-24);
+        }
+
+        .earnings-card {
+            text-align: center;
+            padding: var(--space-16);
+            background: var(--color-bg-3);
+            border-radius: var(--radius-lg);
+        }
+
+        .earnings-card__amount {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-success);
+            margin-bottom: var(--space-4);
+        }
+
+        .earnings-card__label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .toast {
+            position: fixed;
+            top: var(--space-20);
+            right: var(--space-20);
+            background: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-16);
+            box-shadow: var(--shadow-lg);
+            transform: translateX(100%);
+            transition: transform var(--duration-normal) var(--ease-standard);
+            z-index: 1100;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast--success {
+            border-left: 4px solid var(--color-success);
+        }
+
+        .toast--error {
+            border-left: 4px solid var(--color-error);
+        }
+
+        .view {
+            min-height: calc(100vh - 60px);
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        .section {
+            padding: var(--space-32) 0;
+        }
+
+        @media (max-width: 767px) {
+            .hero__title {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .chat-window {
+                width: calc(100vw - 40px);
+                right: -10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar__content">
+                <div class="navbar__brand">🌙 Luna Laundry</div>
+                <div class="navbar__links">
+                    <span class="navbar__link" onclick="showView('home')">Home</span>
+                    <button class="btn btn--primary btn--sm" onclick="showView('pricing')">Get Started</button>
+                    <button class="btn btn--outline btn--sm" onclick="showView('demo')">Demo</button>
+                    <span class="navbar__link" onclick="showView('pricing')">For Customers</span>
+                    <span class="navbar__link" onclick="showView('operators')">For Operators</span>
+                    <span class="navbar__link" onclick="showView('about')">About</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home View -->
+    <div id="home" class="view active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero__content">
+                    <h1 class="hero__title">Luna Laundry - Where Premium Meets Convenience</h1>
+                    <p class="hero__subtitle">Experience the future of laundry service with real-time tracking, premium care, and unmatched convenience.</p>
+                    <div class="hero__actions">
+                        <button class="btn btn--primary btn--lg" onclick="showView('pricing')">Get Started</button>
+                        <button class="btn btn--outline btn--lg" onclick="showView('operators')">Become a Luna Operator</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center mb-8">Why Choose Luna Laundry?</h2>
+                <div class="features__grid">
+                    <div class="feature-card">
+                        <div class="feature-card__icon">📍</div>
+                        <h3>Luna Tracking Technology</h3>
+                        <p>Advanced GPS tracking with real-time updates for complete visibility of your Luna service.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card__icon">⏰</div>
+                        <h3>Luna ETA System</h3>
+                        <p>Precise arrival time predictions with live Luna operator position updates.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card__icon">💰</div>
+                        <h3>Luna Premium Plans</h3>
+                        <p>Flexible Luna pricing options from first-time specials to unlimited enterprise solutions.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card__icon">💬</div>
+                        <h3>Luna Customer Care</h3>
+                        <p>Direct communication with your Luna operator and 24/7 premium support team.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section" style="background: var(--color-bg-1);">
+            <div class="container">
+                <h2 class="text-center mb-8">What Our Customers Say</h2>
+                <div class="features__grid">
+                    <div class="card">
+                        <div class="card__body">
+                            <p>"Luna Laundry has been a game-changer for our busy family. The real-time tracking gives me peace of mind, and the premium quality is always excellent!"</p>
+                            <div style="margin-top: var(--space-16); font-weight: var(--font-weight-medium);">- Sarah Johnson</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card__body">
+                            <p>"As a working professional, I love Luna's convenience. I can track exactly when my laundry will be ready and delivered. The Luna operator chat is so helpful!"</p>
+                            <div style="margin-top: var(--space-16); font-weight: var(--font-weight-medium);">- Michael Chen</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card__body">
+                            <p>"The Luna Enterprise package works perfectly for our office. Premium service, reliable tracking, and excellent communication throughout the Luna process."</p>
+                            <div style="margin-top: var(--space-16); font-weight: var(--font-weight-medium);">- Emma Davis, Office Manager</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Pricing View -->
+    <div id="pricing" class="view">
+        <div class="container">
+            <div class="section">
+                <h1 class="text-center mb-8">Choose Your Perfect Plan</h1>
+                <p class="text-center" style="color: var(--color-text-secondary); margin-bottom: var(--space-32);">Flexible pricing options to fit every laundry need, from individuals to enterprises.</p>
+                
+                <div class="pricing-grid">
+                    <div class="card pricing-card" data-plan="promotion">
+                        <div class="card__body">
+                            <div class="pricing-card__price">$10</div>
+                            <div class="pricing-card__period">per Lb - Luna First-Timer Special</div>
+                            <div class="pricing-card__limit">Limit 5 Lbs</div>
+                            <ul class="pricing-card__features">
+                                <li class="pricing-card__feature">Premium pickup &amp; delivery</li>
+                                <li class="pricing-card__feature">Luna wash, dry &amp; fold</li>
+                                <li class="pricing-card__feature">5 Lbs maximum</li>
+                                <li class="pricing-card__feature">First-time customers only</li>
+                            </ul>
+                            <button class="btn btn--primary btn--full-width" onclick="selectPlan('promotion')">Try Luna Now</button>
+                        </div>
+                    </div>
+
+                    <div class="card pricing-card" data-plan="weekly">
+                        <div class="card__body">
+                            <div class="pricing-card__price">$30</div>
+                            <div class="pricing-card__period">per Week - Luna Weekly</div>
+                            <div class="pricing-card__limit">Limit 5 Lbs</div>
+                            <ul class="pricing-card__features">
+                                <li class="pricing-card__feature">Premium pickup &amp; delivery</li>
+                                <li class="pricing-card__feature">Luna wash, dry &amp; fold</li>
+                                <li class="pricing-card__feature">5 Lbs per week</li>
+                                <li class="pricing-card__feature">Cancel anytime</li>
+                            </ul>
+                            <button class="btn btn--primary btn--full-width" onclick="selectPlan('weekly')">Select Luna Plan</button>
+                        </div>
+                    </div>
+
+                    <div class="card pricing-card pricing-card--featured" data-plan="monthly">
+                        <div class="pricing-card__badge">Most Popular</div>
+                        <div class="card__body">
+                            <div class="pricing-card__price">$150</div>
+                            <div class="pricing-card__period">per Month - Luna Monthly</div>
+                            <div class="pricing-card__limit">Limit 30 Lbs</div>
+                            <ul class="pricing-card__features">
+                                <li class="pricing-card__feature">Premium pickup &amp; delivery</li>
+                                <li class="pricing-card__feature">Luna wash, dry &amp; fold</li>
+                                <li class="pricing-card__feature">30 Lbs per month</li>
+                                <li class="pricing-card__feature">Priority scheduling</li>
+                            </ul>
+                            <button class="btn btn--primary btn--full-width" onclick="selectPlan('monthly')">Select Luna Plan</button>
+                        </div>
+                    </div>
+
+                    <div class="card pricing-card" data-plan="family">
+                        <div class="card__body">
+                            <div class="pricing-card__price">$300</div>
+                            <div class="pricing-card__period">per Month - Luna Family Package</div>
+                            <div class="pricing-card__limit">Unlimited</div>
+                            <ul class="pricing-card__features">
+                                <li class="pricing-card__feature">Premium pickup &amp; delivery</li>
+                                <li class="pricing-card__feature">Luna wash, dry &amp; fold</li>
+                                <li class="pricing-card__feature">Unlimited laundry</li>
+                                <li class="pricing-card__feature">Priority Luna support</li>
+                                <li class="pricing-card__feature">24/7 service</li>
+                            </ul>
+                            <button class="btn btn--primary btn--full-width" onclick="selectPlan('family')">Select Luna Plan</button>
+                        </div>
+                    </div>
+
+                    <div class="card pricing-card" data-plan="yearly">
+                        <div class="pricing-card__badge">Best Value</div>
+                        <div class="card__body">
+                            <div class="pricing-card__price">$3000</div>
+                            <div class="pricing-card__period">per Year - Luna Family Annual</div>
+                            <div class="pricing-card__limit">Unlimited (2 Months Free)</div>
+                            <ul class="pricing-card__features">
+                                <li class="pricing-card__feature">Premium pickup &amp; delivery</li>
+                                <li class="pricing-card__feature">Luna wash, dry &amp; fold</li>
+                                <li class="pricing-card__feature">Unlimited laundry</li>
+                                <li class="pricing-card__feature">2 months free</li>
+                                <li class="pricing-card__feature">VIP Luna support</li>
+                                <li class="pricing-card__feature">Express service</li>
+                            </ul>
+                            <button class="btn btn--primary btn--full-width" onclick="selectPlan('yearly')">Select Luna Plan</button>
+                        </div>
+                    </div>
+
+                    <div class="card pricing-card" data-plan="enterprise">
+                        <div class="card__body">
+                            <div class="pricing-card__price">$1500</div>
+                            <div class="pricing-card__period">per Month - Luna Enterprise</div>
+                            <div class="pricing-card__limit">Unlimited</div>
+                            <ul class="pricing-card__features">
+                                <li class="pricing-card__feature">Premium pickup &amp; delivery</li>
+                                <li class="pricing-card__feature">Luna wash, dry &amp; fold</li>
+                                <li class="pricing-card__feature">Unlimited laundry</li>
+                                <li class="pricing-card__feature">Dedicated Luna account manager</li>
+                                <li class="pricing-card__feature">Custom scheduling</li>
+                                <li class="pricing-card__feature">Bulk processing</li>
+                            </ul>
+                            <button class="btn btn--primary btn--full-width" onclick="selectPlan('enterprise')">Contact Luna Sales</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout View -->
+    <div id="checkout" class="view">
+        <div class="container">
+            <div class="section">
+                <h1 class="text-center mb-8">Complete Your Order</h1>
+                
+                <!-- Progress Indicator -->
+                <div class="checkout-progress">
+                    <div class="checkout-step checkout-step--active" id="step-1">
+                        <div class="checkout-step__number">1</div>
+                        <span>Review Plan</span>
+                    </div>
+                    <div class="checkout-step" id="step-2">
+                        <div class="checkout-step__number">2</div>
+                        <span>Address</span>
+                    </div>
+                    <div class="checkout-step" id="step-3">
+                        <div class="checkout-step__number">3</div>
+                        <span>Schedule</span>
+                    </div>
+                    <div class="checkout-step" id="step-4">
+                        <div class="checkout-step__number">4</div>
+                        <span>Payment</span>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-32);" class="checkout-grid">
+                    <!-- Checkout Steps -->
+                    <div>
+                        <!-- Step 1: Review Plan -->
+                        <div id="checkout-step-1" class="checkout-step-content">
+                            <h3 style="margin-bottom: var(--space-16);">Review Your Selected Plan</h3>
+                            <div class="card">
+                                <div class="card__body">
+                                    <div id="selected-plan-details"></div>
+                                    <button class="btn btn--primary" onclick="nextCheckoutStep(2)">Continue to Address</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Address -->
+                        <div id="checkout-step-2" class="checkout-step-content hidden">
+                            <h3 style="margin-bottom: var(--space-16);">Pickup &amp; Delivery Address</h3>
+                            <div class="card">
+                                <div class="card__body">
+                                    <div class="form-group">
+                                        <label class="form-label">Street Address</label>
+                                        <input type="text" class="form-control" id="address" placeholder="123 Main Street">
+                                    </div>
+                                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-16);">
+                                        <div class="form-group">
+                                            <label class="form-label">City</label>
+                                            <input type="text" class="form-control" id="city" placeholder="New York">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">ZIP Code</label>
+                                            <input type="text" class="form-control" id="zip" placeholder="10001">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Special Instructions (Optional)</label>
+                                        <textarea class="form-control" id="instructions" placeholder="Any special pickup/delivery instructions..."></textarea>
+                                    </div>
+                                    <div style="display: flex; gap: var(--space-16);">
+                                        <button class="btn btn--outline" onclick="nextCheckoutStep(1)">Back</button>
+                                        <button class="btn btn--primary" onclick="nextCheckoutStep(3)">Continue to Schedule</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Schedule -->
+                        <div id="checkout-step-3" class="checkout-step-content hidden">
+                            <h3 style="margin-bottom: var(--space-16);">Select Pickup Time</h3>
+                            <div class="card">
+                                <div class="card__body">
+                                    <div class="form-group">
+                                        <label class="form-label">Preferred Pickup Date</label>
+                                        <input type="date" class="form-control" id="pickup-date" min="" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Preferred Time Slot</label>
+                                        <select class="form-control" id="pickup-time">
+                                            <option value="">Select a time slot</option>
+                                            <option value="9-12">9:00 AM - 12:00 PM</option>
+                                            <option value="12-15">12:00 PM - 3:00 PM</option>
+                                            <option value="15-18">3:00 PM - 6:00 PM</option>
+                                            <option value="18-21">6:00 PM - 9:00 PM</option>
+                                        </select>
+                                    </div>
+                                    <div style="display: flex; gap: var(--space-16);">
+                                        <button class="btn btn--outline" onclick="nextCheckoutStep(2)">Back</button>
+                                        <button class="btn btn--primary" onclick="nextCheckoutStep(4)">Continue to Payment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Payment -->
+                        <div id="checkout-step-4" class="checkout-step-content hidden">
+                            <h3 style="margin-bottom: var(--space-16);">Payment Information</h3>
+                            <div class="card">
+                                <div class="card__body">
+                                    <div class="form-group">
+                                        <label class="form-label">Card Number</label>
+                                        <input type="text" class="form-control" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                                    </div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16);">
+                                        <div class="form-group">
+                                            <label class="form-label">Expiry Date</label>
+                                            <input type="text" class="form-control" id="card-expiry" placeholder="MM/YY" maxlength="5">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">CVV</label>
+                                            <input type="text" class="form-control" id="card-cvv" placeholder="123" maxlength="3">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Name on Card</label>
+                                        <input type="text" class="form-control" id="card-name" placeholder="John Doe">
+                                    </div>
+                                    <div style="text-align: center; margin: var(--space-20) 0;">
+                                        <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--space-8);">🔒 Secured by SSL encryption</div>
+                                        <div style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">PCI DSS Compliant • Your payment is secure</div>
+                                    </div>
+                                    <div style="display: flex; gap: var(--space-16);">
+                                        <button class="btn btn--outline" onclick="nextCheckoutStep(3)">Back</button>
+                                        <button class="btn btn--primary btn--full-width" onclick="completeOrder()">Complete Purchase</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary Sidebar -->
+                    <div class="order-summary-sidebar">
+                        <div class="card">
+                            <div class="card__header">
+                                <h4>Order Summary</h4>
+                            </div>
+                            <div class="card__body">
+                                <div id="order-summary-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Dashboard View -->
+    <div id="dashboard" class="view">
+        <div class="container">
+            <div class="section">
+                <div style="margin-bottom: var(--space-24);">
+                    <h1>Welcome to Luna Laundry, <span id="customer-name">John</span>! 👋</h1>
+                    <p style="color: var(--color-text-secondary);">Track your Luna laundry journey in real-time</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Main Tracking Section -->
+                    <div>
+                        <!-- ETA Display -->
+                        <div class="eta-display">
+                            <div class="eta-display__time" id="eta-time">23 minutes</div>
+                            <div>Estimated Arrival Time</div>
+                        </div>
+
+                        <!-- Real-time Tracking Map -->
+                        <div class="card" style="margin-bottom: var(--space-24);">
+                            <div class="card__header">
+                                <h4>Live Tracking</h4>
+                            </div>
+                            <div class="card__body" style="padding: 0;">
+                                <div class="tracking-map">
+                                    <div class="map-marker map-marker--customer" title="Your Location"></div>
+                                    <div class="map-marker map-marker--operator" id="operator-marker" title="Operator Location"></div>
+                                    <div class="map-route"></div>
+                                    <div style="position: absolute; top: var(--space-16); left: var(--space-16); background: rgba(0,0,0,0.8); color: white; padding: var(--space-8); border-radius: var(--radius-base); font-size: var(--font-size-sm);">
+                                        🏠 Your Home &nbsp;&nbsp;&nbsp; 🌙 Luna Operator: Mike
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Order Status Timeline -->
+                        <div class="card">
+                            <div class="card__header">
+                                <h4>Order Progress</h4>
+                            </div>
+                            <div class="card__body">
+                                <ul class="timeline" id="order-timeline">
+                                    <li class="timeline__item">
+                                        <div class="timeline__marker timeline__marker--completed"></div>
+                                        <div>
+                                            <div style="font-weight: var(--font-weight-medium);">Order Confirmed</div>
+                                            <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">2:15 PM</div>
+                                        </div>
+                                    </li>
+                                    <li class="timeline__item">
+                                        <div class="timeline__marker timeline__marker--completed"></div>
+                                        <div>
+                                            <div style="font-weight: var(--font-weight-medium);">Operator Assigned</div>
+                                            <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">2:18 PM - Mike Johnson</div>
+                                        </div>
+                                    </li>
+                                    <li class="timeline__item">
+                                        <div class="timeline__marker timeline__marker--active"></div>
+                                        <div>
+                                            <div style="font-weight: var(--font-weight-medium);">En Route to Pickup</div>
+                                            <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">ETA: 23 minutes</div>
+                                        </div>
+                                    </li>
+                                    <li class="timeline__item">
+                                        <div class="timeline__marker"></div>
+                                        <div>
+                                            <div style="font-weight: var(--font-weight-medium);">Laundry Picked Up</div>
+                                            <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">Pending</div>
+                                        </div>
+                                    </li>
+                                    <li class="timeline__item">
+                                        <div class="timeline__marker"></div>
+                                        <div>
+                                            <div style="font-weight: var(--font-weight-medium);">In Processing</div>
+                                            <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">Pending</div>
+                                        </div>
+                                    </li>
+                                    <li class="timeline__item">
+                                        <div class="timeline__marker"></div>
+                                        <div>
+                                            <div style="font-weight: var(--font-weight-medium);">Out for Delivery</div>
+                                            <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">Pending</div>
+                                        </div>
+                                    </li>
+                                    <li class="timeline__item">
+                                        <div class="timeline__marker"></div>
+                                        <div>
+                                            <div style="font-weight: var(--font-weight-medium);">Delivered</div>
+                                            <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">Pending</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <div>
+                        <!-- Order Details -->
+                        <div class="card" style="margin-bottom: var(--space-24);">
+                            <div class="card__header">
+                                <h4>Order Details</h4>
+                            </div>
+                            <div class="card__body">
+                                <div style="margin-bottom: var(--space-8);">
+                                    <strong>Order #:</strong> <span id="order-number">LW-2024-001</span>
+                                </div>
+                                <div style="margin-bottom: var(--space-8);">
+                                    <strong>Plan:</strong> <span id="order-plan">Monthly Subscription</span>
+                                </div>
+                                <div style="margin-bottom: var(--space-8);">
+                                    <strong>Amount:</strong> <span id="order-amount">$150.00</span>
+                                </div>
+                                <div style="margin-bottom: var(--space-8);">
+                                    <strong>Pickup Address:</strong><br>
+                                    <span id="order-address">123 Main Street<br>New York, NY 10001</span>
+                                </div>
+                                <div>
+                                    <strong>Scheduled:</strong> <span id="order-date">Today, 3:00 PM - 6:00 PM</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Operator Info -->
+                        <div class="card">
+                            <div class="card__header">
+                                <h4>Your Operator</h4>
+                            </div>
+                            <div class="card__body">
+                                <div style="display: flex; align-items: center; margin-bottom: var(--space-16);">
+                                    <div style="width: 50px; height: 50px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: var(--space-12);">MJ</div>
+                                    <div>
+                                        <div style="font-weight: var(--font-weight-medium);">Mike Johnson</div>
+                                        <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">⭐ 4.9 (127 reviews)</div>
+                                    </div>
+                                </div>
+                                <button class="btn btn--outline btn--full-width" onclick="openChat()">💬 Chat with your Luna Operator</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Operators View -->
+    <div id="operators" class="view">
+        <!-- Recruitment Section -->
+        <div id="operator-recruitment">
+            <section class="hero" style="background: linear-gradient(135deg, var(--color-bg-3), var(--color-bg-2));">
+                <div class="container">
+                    <div class="hero__content">
+                        <h1 class="hero__title">Join the Luna Laundry Team - Earn $20 per Hour</h1>
+                        <p class="hero__subtitle">Become a Luna Operator and earn competitive wages with premium benefits and flexible scheduling.</p>
+                        <div class="hero__actions">
+                            <button class="btn btn--primary btn--lg" onclick="showOperatorSignup()">Become a Luna Operator</button>
+                            <button class="btn btn--outline btn--lg" onclick="showOperatorLogin()">Luna Operator Login</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <h2 class="text-center mb-8">Why Become a Luna Laundry Operator?</h2>
+                    <div class="features__grid">
+                        <div class="feature-card">
+                            <div class="feature-card__icon">💰</div>
+                            <h3>$20 per Hour Guaranteed</h3>
+                            <p>Competitive hourly wage with performance bonuses and weekly direct deposit payouts.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card__icon">📅</div>
+                            <h3>Flexible Schedule</h3>
+                            <p>Work when you want! Set your availability and accept jobs that fit your schedule.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card__icon">📱</div>
+                            <h3>Real-Time Luna Job Assignments</h3>
+                            <p>Get instant Luna job notifications with built-in GPS navigation and customer communication.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card__icon">🤝</div>
+                            <h3>Luna Operator Support</h3>
+                            <p>Our Luna support team is always available to help you succeed with dedicated operator assistance.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Signup Form -->
+            <section class="section" style="background: var(--color-bg-1);" id="operator-signup-section" class="hidden">
+                <div class="container">
+                    <div style="max-width: 600px; margin: 0 auto;">
+                        <h2 class="text-center mb-8">Become a Luna Operator</h2>
+                        <div class="card">
+                            <div class="card__body">
+                                <form id="operator-signup-form">
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16);">
+                                        <div class="form-group">
+                                            <label class="form-label">First Name</label>
+                                            <input type="text" class="form-control" id="operator-first-name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" id="operator-last-name" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="operator-email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="operator-phone" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Driver's License Number</label>
+                                        <input type="text" class="form-control" id="operator-license" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Vehicle Type</label>
+                                        <select class="form-control" id="operator-vehicle" required>
+                                            <option value="">Select vehicle type</option>
+                                            <option value="car">Car</option>
+                                            <option value="suv">SUV</option>
+                                            <option value="truck">Pickup Truck</option>
+                                            <option value="van">Van</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Availability</label>
+                                        <select class="form-control" id="operator-availability" required>
+                                            <option value="">Select availability</option>
+                                            <option value="morning">Morning (6AM - 12PM)</option>
+                                            <option value="afternoon">Afternoon (12PM - 6PM)</option>
+                                            <option value="evening">Evening (6PM - 10PM)</option>
+                                            <option value="flexible">Flexible - All Hours</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn--primary btn--full-width">Submit Application</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Operator Dashboard -->
+        <div id="operator-dashboard" class="hidden">
+            <div class="container">
+                <div class="section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-24);">
+                        <div>
+                            <h1>Operator Dashboard</h1>
+                            <p style="color: var(--color-text-secondary);">Welcome back, <span id="operator-name">Mike Johnson</span>!</p>
+                        </div>
+                        <button class="btn btn--outline" onclick="logoutOperator()">Logout</button>
+                    </div>
+
+                    <!-- Earnings Summary -->
+                    <div class="earnings-summary">
+                        <div class="earnings-card">
+                            <div class="earnings-card__amount">$142</div>
+                            <div class="earnings-card__label">Today</div>
+                        </div>
+                        <div class="earnings-card">
+                            <div class="earnings-card__amount">$860</div>
+                            <div class="earnings-card__label">This Week</div>
+                        </div>
+                        <div class="earnings-card">
+                            <div class="earnings-card__amount">$3,240</div>
+                            <div class="earnings-card__label">This Month</div>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-24);" class="operator-grid">
+                        <!-- Available Jobs -->
+                        <div class="card">
+                            <div class="card__header">
+                                <h4>Available Jobs</h4>
+                            </div>
+                            <div class="card__body">
+                                <div class="operator-jobs" id="available-jobs">
+                                    <div class="job-card">
+                                        <div class="job-card__header">
+                                            <h5>Pickup &amp; Delivery</h5>
+                                            <div class="status status--info">Available</div>
+                                        </div>
+                                        <div class="job-card__details">
+                                            <div class="job-card__detail">
+                                                <span class="job-card__label">Customer:</span>
+                                                <span>Sarah Wilson</span>
+                                            </div>
+                                            <div class="job-card__detail">
+                                                <span class="job-card__label">Pickup:</span>
+                                                <span>456 Oak Street, Brooklyn, NY</span>
+                                            </div>
+                                            <div class="job-card__detail">
+                                                <span class="job-card__label">Plan:</span>
+                                                <span>Weekly Subscription (5 lbs)</span>
+                                            </div>
+                                            <div class="job-card__detail">
+                                                <span class="job-card__label">Distance:</span>
+                                                <span>2.3 miles away</span>
+                                            </div>
+                                            <div class="job-card__detail">
+                                                <span class="job-card__label">Pay:</span>
+                                                <span style="color: var(--color-success); font-weight: var(--font-weight-medium);">$25.00</span>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn--primary btn--full-width" onclick="acceptJob('job-1')">Accept Job</button>
+                                    </div>
+
+                                    <div class="job-card">
+                                        <div class="job-card__header">
+                                            <h5>Pickup &amp; Delivery</h5>
+                                            <div class="status status--info">Available</div>
+                                        </div>
+                                        <div class="job-card__details">
+                                            <div class="job-card__detail">
+                                                <span class="job-card__label">Customer:</span>
+                                                <span>David Chen</span>
+                                            </div>
+                                            <div class="job-card__detail">
+                                                <span class="job-card__label">Pickup:</span>
+                                                <span>789 Pine Ave, Manhattan, NY</span>
+                                            </div>
+                                            <div class="job-card__detail">
+                                                <span class="job-card__label">Plan:</span>
+                                                <span>Family Package (Unlimited)</span>
+                                            </div>
+                                            <div class="job-card__detail">
+                                                <span class="job-card__label">Distance:</span>
+                                                <span>3.7 miles away</span>
+                                            </div>
+                                            <div class="job-card__detail">
+                                                <span class="job-card__label">Pay:</span>
+                                                <span style="color: var(--color-success); font-weight: var(--font-weight-medium);">$35.00</span>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn--primary btn--full-width" onclick="acceptJob('job-2')">Accept Job</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Active Job -->
+                        <div class="card" id="active-job-card" style="display: none;">
+                            <div class="card__header">
+                                <h4>Current Job</h4>
+                            </div>
+                            <div class="card__body">
+                                <div id="active-job-details"></div>
+                                <div style="margin: var(--space-16) 0;">
+                                    <h5 style="margin-bottom: var(--space-12);">Update Job Status:</h5>
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-8);">
+                                        <button class="btn btn--outline btn--sm" onclick="updateJobStatus('arrived')">Arrived at Pickup</button>
+                                        <button class="btn btn--outline btn--sm" onclick="updateJobStatus('collected')">Laundry Collected</button>
+                                        <button class="btn btn--outline btn--sm" onclick="updateJobStatus('processing')">In Processing</button>
+                                        <button class="btn btn--outline btn--sm" onclick="updateJobStatus('delivery')">Out for Delivery</button>
+                                        <button class="btn btn--success btn--sm" onclick="updateJobStatus('delivered')">Delivered</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn--outline btn--full-width" onclick="openOperatorChat()">💬 Chat with Customer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo View -->
+    <div id="demo" class="view">
+        <!-- Demo Hero Section -->
+        <section class="hero" style="background: linear-gradient(135deg, var(--color-bg-1), var(--color-bg-3));">
+            <div class="container">
+                <div class="hero__content">
+                    <h1 class="hero__title">🌙 Experience Luna Laundry in Action</h1>
+                    <p class="hero__subtitle">Watch a real-time delivery simulation in San Francisco</p>
+                    <p style="color: var(--color-text-secondary); margin-top: var(--space-16);">See how our premium service works from order to delivery</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="section">
+                <!-- Order Summary and ETA Row -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-24); margin-bottom: var(--space-32);" class="demo-top-row">
+                    <!-- Order Summary Card -->
+                    <div class="card">
+                        <div class="card__header" style="background: var(--color-primary); color: var(--color-btn-primary-text); text-align: center;">
+                            <h4 style="color: var(--color-btn-primary-text);">📋 LIVE ORDER TRACKING</h4>
+                        </div>
+                        <div class="card__body">
+                            <div style="margin-bottom: var(--space-8);"><strong>Order ID:</strong> LUNA-ORD-12845</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Customer:</strong> Sarah Johnson</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Location:</strong> Mission District, SF</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Plan:</strong> Luna Monthly ($150/month)</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Status:</strong> <span class="status status--warning">🚗 En Route to Pickup</span></div>
+                            <div><strong>Order Placed:</strong> 5:29 AM</div>
+                        </div>
+                    </div>
+
+                    <!-- Large ETA Display -->
+                    <div class="card" style="background: var(--color-bg-3);">
+                        <div class="card__body" style="text-align: center; padding: var(--space-32);">
+                            <h3 style="margin-bottom: var(--space-16); color: var(--color-text-secondary);">ESTIMATED PICKUP TIME</h3>
+                            <div style="font-size: 3rem; font-weight: var(--font-weight-bold); color: var(--color-success); margin-bottom: var(--space-8);" id="demo-eta-time">5:34 AM</div>
+                            <div style="font-size: var(--font-size-xl); margin-bottom: var(--space-16); color: var(--color-text-secondary);">(<span id="demo-eta-minutes">5 minutes</span>)</div>
+                            <div style="font-size: var(--font-size-lg);">Your Luna Operator <strong>Maria</strong></div>
+                            <div style="color: var(--color-success); font-weight: var(--font-weight-medium);">is <span id="demo-distance">1.4 miles</span> away! 🚗</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Large Map Display -->
+                <div class="card" style="margin-bottom: var(--space-32);">
+                    <div class="card__header">
+                        <h4>Live Delivery Tracking - San Francisco</h4>
+                        <div style="display: flex; gap: var(--space-8); margin-top: var(--space-12);" id="map-controls">
+                            <button class="btn btn--sm btn--primary" onclick="switchMapView('aerial')">Aerial Overview</button>
+                            <button class="btn btn--sm btn--outline" onclick="switchMapView('satellite')">Satellite View</button>
+                            <button class="btn btn--sm btn--outline" onclick="switchMapView('complete')">Complete Route</button>
+                        </div>
+                    </div>
+                    <div class="card__body" style="padding: 0;">
+                        <div style="position: relative; height: 400px; background: var(--color-bg-1); display: flex; align-items: center; justify-content: center; border-radius: var(--radius-lg); overflow: hidden;" id="demo-map-container">
+                            <div id="map-aerial" class="demo-map-view">
+                                <div style="font-size: var(--font-size-lg); color: var(--color-text-secondary); text-align: center;">
+                                    🗺️ Aerial Overview of San Francisco Delivery Route<br>
+                                    <small>Bird's eye view showing pickup and delivery locations</small>
+                                </div>
+                            </div>
+                            <div id="map-satellite" class="demo-map-view" style="display: none;">
+                                <div style="font-size: var(--font-size-lg); color: var(--color-text-secondary); text-align: center;">
+                                    🛰️ Satellite View with Street Labels<br>
+                                    <small>Detailed satellite imagery of the Mission District route</small>
+                                </div>
+                            </div>
+                            <div id="map-complete" class="demo-map-view" style="display: none;">
+                                <div style="font-size: var(--font-size-lg); color: var(--color-text-secondary); text-align: center;">
+                                    📍 Complete Route Visualization<br>
+                                    <small>All three delivery legs: Pickup → Processing → Delivery</small>
+                                </div>
+                            </div>
+                            <!-- Live markers -->
+                            <div style="position: absolute; top: 20%; left: 60%; width: 12px; height: 12px; background: var(--color-warning); border: 2px solid white; border-radius: 50%; animation: pulse 2s infinite;" title="Maria's Location - En Route"></div>
+                            <div style="position: absolute; top: 70%; left: 30%; width: 12px; height: 12px; background: var(--color-primary); border: 2px solid white; border-radius: 50%;" title="Customer Location - Mission District"></div>
+                        </div>
+                        <div style="padding: var(--space-12); background: var(--color-bg-1); font-size: var(--font-size-sm); color: var(--color-text-secondary);">Current View: <span id="current-map-view">Aerial Overview - Bird's eye view of SF</span></div>
+                    </div>
+                </div>
+
+                <!-- Service Timeline -->
+                <div class="card" style="margin-bottom: var(--space-32);">
+                    <div class="card__header">
+                        <h4>Service Timeline (7 Stages)</h4>
+                    </div>
+                    <div class="card__body">
+                        <div style="display: flex; justify-content: space-between; align-items: center; position: relative; margin: var(--space-20) 0;">
+                            <!-- Progress line -->
+                            <div style="position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: var(--color-border); z-index: 1;"></div>
+                            <div style="position: absolute; top: 50%; left: 0; width: 28%; height: 2px; background: var(--color-success); z-index: 2;"></div>
+                            
+                            <!-- Stage 1 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; z-index: 3;">
+                                <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--color-success); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: var(--space-8);">✅</div>
+                                <div style="font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); text-align: center; margin-bottom: var(--space-4);">Order<br>Confirmed</div>
+                                <div style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">5:29 AM</div>
+                            </div>
+                            
+                            <!-- Stage 2 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; z-index: 3;">
+                                <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--color-success); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: var(--space-8);">✅</div>
+                                <div style="font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); text-align: center; margin-bottom: var(--space-4);">Operator<br>Assigned</div>
+                                <div style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">5:31 AM</div>
+                            </div>
+                            
+                            <!-- Stage 3 - Current -->
+                            <div style="display: flex; flex-direction: column; align-items: center; z-index: 3;">
+                                <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--color-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: var(--space-8); animation: pulse 2s infinite;">🚗</div>
+                                <div style="font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); text-align: center; margin-bottom: var(--space-4); color: var(--color-primary);">En Route<br>to Pickup</div>
+                                <div style="font-size: var(--font-size-xs); color: var(--color-primary); font-weight: var(--font-weight-medium);">← CURRENT</div>
+                            </div>
+                            
+                            <!-- Stage 4 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; z-index: 3;">
+                                <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--color-secondary); color: var(--color-text-secondary); display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: var(--space-8);">📦</div>
+                                <div style="font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); text-align: center; margin-bottom: var(--space-4);">Pickup</div>
+                                <div style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">5:34 AM</div>
+                            </div>
+                            
+                            <!-- Stage 5 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; z-index: 3;">
+                                <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--color-secondary); color: var(--color-text-secondary); display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: var(--space-8);">🧺</div>
+                                <div style="font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); text-align: center; margin-bottom: var(--space-4);">Processing</div>
+                                <div style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">5:44 AM</div>
+                            </div>
+                            
+                            <!-- Stage 6 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; z-index: 3;">
+                                <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--color-secondary); color: var(--color-text-secondary); display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: var(--space-8);">🚚</div>
+                                <div style="font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); text-align: center; margin-bottom: var(--space-4);">Delivery</div>
+                                <div style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">7:04 AM</div>
+                            </div>
+                            
+                            <!-- Stage 7 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; z-index: 3;">
+                                <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--color-secondary); color: var(--color-text-secondary); display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: var(--space-8);">✨</div>
+                                <div style="font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); text-align: center; margin-bottom: var(--space-4);">Delivered</div>
+                                <div style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">7:04 AM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Route Details Panel -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-16); margin-bottom: var(--space-32);">
+                    <!-- LEG 1: PICKUP (Current) -->
+                    <div class="card" style="border: 2px solid var(--color-primary);">
+                        <div class="card__header" style="background: var(--color-primary); color: var(--color-btn-primary-text);">
+                            <h4 style="color: var(--color-btn-primary-text);">LEG 1: PICKUP</h4>
+                            <div class="status" style="background: var(--color-btn-primary-text); color: var(--color-primary); border: none;">🚗 IN PROGRESS</div>
+                        </div>
+                        <div class="card__body">
+                            <div style="margin-bottom: var(--space-8);"><strong>From:</strong> 987 Folsom St, SoMa</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>To:</strong> 3456 Valencia St, Mission District</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Distance:</strong> 1.41 miles</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Duration:</strong> 5 minutes</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Traffic:</strong> Moderate</div>
+                        </div>
+                    </div>
+
+                    <!-- LEG 2: PROCESSING (Pending) -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h4>LEG 2: PROCESSING</h4>
+                            <div class="status status--info">⏳ Pending</div>
+                        </div>
+                        <div class="card__body">
+                            <div style="margin-bottom: var(--space-8);"><strong>From:</strong> 3456 Valencia St, Mission</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>To:</strong> 2100 Mission St, Luna Facility</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Distance:</strong> 0.21 miles</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Processing Time:</strong> 90 minutes</div>
+                            <div><strong>Location:</strong> Luna Processing Center</div>
+                        </div>
+                    </div>
+
+                    <!-- LEG 3: DELIVERY (Pending) -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h4>LEG 3: DELIVERY</h4>
+                            <div class="status status--info">⏳ Scheduled</div>
+                        </div>
+                        <div class="card__body">
+                            <div style="margin-bottom: var(--space-8);"><strong>From:</strong> 2100 Mission St, Luna Facility</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>To:</strong> 3456 Valencia St, Mission</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Distance:</strong> 0.21 miles</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Duration:</strong> <1 minute</div>
+                            <div><strong>ETA:</strong> 7:04 AM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Operator & Customer Info -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-24); margin-bottom: var(--space-32);">
+                    <!-- Luna Operator -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h4>🌙 Luna Operator</h4>
+                        </div>
+                        <div class="card__body">
+                            <div style="display: flex; align-items: center; margin-bottom: var(--space-16);">
+                                <div style="width: 60px; height: 60px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: var(--space-12); font-size: var(--font-size-lg);">MS</div>
+                                <div>
+                                    <div style="font-weight: var(--font-weight-bold); margin-bottom: var(--space-4);">Maria Santos</div>
+                                    <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">ID: LUNA-OPR-1047</div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Rating:</strong> ⭐ 4.9 (1,247 deliveries)</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Vehicle:</strong> 2023 Toyota Prius (White)</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Current Location:</strong> Folsom St, SoMa</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Status:</strong> <span class="status status--success">Active - En Route</span></div>
+                            <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+                                <span style="background: var(--color-bg-3); padding: var(--space-4) var(--space-8); border-radius: var(--radius-full); font-size: var(--font-size-xs);">Top Performer</span>
+                                <span style="background: var(--color-bg-3); padding: var(--space-4) var(--space-8); border-radius: var(--radius-full); font-size: var(--font-size-xs);">100% On-Time</span>
+                                <span style="background: var(--color-bg-3); padding: var(--space-4) var(--space-8); border-radius: var(--radius-full); font-size: var(--font-size-xs);">Customer Favorite</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customer -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h4>👤 Customer</h4>
+                        </div>
+                        <div class="card__body">
+                            <div style="margin-bottom: var(--space-16);">
+                                <div style="font-weight: var(--font-weight-bold); margin-bottom: var(--space-4);">Sarah Johnson</div>
+                                <div style="color: var(--color-text-secondary);">3456 Valencia Street</div>
+                            </div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Neighborhood:</strong> Mission District, SF</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Phone:</strong> (415) 555-0198</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Plan:</strong> Luna Monthly</div>
+                            <div style="margin-bottom: var(--space-8);"><strong>Member Since:</strong> March 2025</div>
+                            <div><strong>Total Orders:</strong> 12</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Tracking Details -->
+                <div class="card" style="margin-bottom: var(--space-32);">
+                    <div class="card__header">
+                        <h4>📍 LIVE TRACKING</h4>
+                    </div>
+                    <div class="card__body">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-24);">
+                            <div>
+                                <div style="margin-bottom: var(--space-12);"><strong>Operator Location:</strong><br>987 Folsom Street, SoMa</div>
+                                <div style="margin-bottom: var(--space-12);"><strong>Heading:</strong> North toward Mission District</div>
+                                <div style="margin-bottom: var(--space-12);"><strong>Speed:</strong> 18 mph</div>
+                                <div style="margin-bottom: var(--space-12);"><strong>Distance Remaining:</strong> <span id="demo-tracking-distance">1.41 miles</span></div>
+                                <div style="margin-bottom: var(--space-12);"><strong>Time Remaining:</strong> <span id="demo-tracking-time">5 minutes</span></div>
+                                <div style="margin-bottom: var(--space-12);"><strong>Pickup ETA:</strong> 5:34 AM</div>
+                            </div>
+                            <div>
+                                <div style="margin-bottom: var(--space-12);"><strong>Traffic:</strong> Moderate - Mission Street congestion</div>
+                                <div><strong>Navigation:</strong>
+                                    <ol style="margin: var(--space-8) 0; padding-left: var(--space-20);">
+                                        <li>Head north on Folsom St (0.3 mi)</li>
+                                        <li>Right onto Valencia St (1.0 mi)</li>
+                                        <li>Destination on right (#3456)</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Chat Demo -->
+                <div class="card" style="margin-bottom: var(--space-32);">
+                    <div class="card__header">
+                        <h4>💬 Live Chat with Luna Operator</h4>
+                    </div>
+                    <div class="card__body">
+                        <div style="background: var(--color-background); border-radius: var(--radius-lg); padding: var(--space-16); height: 300px; overflow-y: auto; border: 1px solid var(--color-border);">
+                            <!-- Chat messages -->
+                            <div style="margin-bottom: var(--space-16);">
+                                <div style="display: flex; align-items: flex-start; margin-bottom: var(--space-8);">
+                                    <div style="width: 32px; height: 32px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: var(--space-8); font-size: var(--font-size-sm);">MS</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: var(--font-weight-medium); margin-bottom: var(--space-4);">Maria Santos</div>
+                                        <div style="background: var(--color-secondary); padding: var(--space-8) var(--space-12); border-radius: var(--radius-lg); margin-bottom: var(--space-4);">Hi Sarah! 👋 I'm on my way to collect your laundry! Be there in 5 minutes.</div>
+                                        <div style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">5:30 AM</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: var(--space-16);">
+                                <div style="display: flex; align-items: flex-start; justify-content: flex-end; margin-bottom: var(--space-8);">
+                                    <div style="flex: 1; text-align: right;">
+                                        <div style="font-weight: var(--font-weight-medium); margin-bottom: var(--space-4);">You</div>
+                                        <div style="background: var(--color-primary); color: var(--color-btn-primary-text); padding: var(--space-8) var(--space-12); border-radius: var(--radius-lg); margin-bottom: var(--space-4); display: inline-block;">Great! The bag is by the front door.</div>
+                                        <div style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">5:31 AM</div>
+                                    </div>
+                                    <div style="width: 32px; height: 32px; background: var(--color-success); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-left: var(--space-8); font-size: var(--font-size-sm);">SJ</div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: var(--space-16);">
+                                <div style="display: flex; align-items: flex-start; margin-bottom: var(--space-8);">
+                                    <div style="width: 32px; height: 32px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: var(--space-8); font-size: var(--font-size-sm);">MS</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: var(--font-weight-medium); margin-bottom: var(--space-4);">Maria Santos</div>
+                                        <div style="background: var(--color-secondary); padding: var(--space-8) var(--space-12); border-radius: var(--radius-lg); margin-bottom: var(--space-4);">Perfect! I see you have silk blouses - I'll take special care. ✨</div>
+                                        <div style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">5:31 AM</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: var(--space-16);">
+                                <div style="display: flex; align-items: flex-start; justify-content: flex-end; margin-bottom: var(--space-8);">
+                                    <div style="flex: 1; text-align: right;">
+                                        <div style="font-weight: var(--font-weight-medium); margin-bottom: var(--space-4);">You</div>
+                                        <div style="background: var(--color-primary); color: var(--color-btn-primary-text); padding: var(--space-8) var(--space-12); border-radius: var(--radius-lg); margin-bottom: var(--space-4); display: inline-block;">Thank you!</div>
+                                        <div style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">5:32 AM</div>
+                                    </div>
+                                    <div style="width: 32px; height: 32px; background: var(--color-success); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-left: var(--space-8); font-size: var(--font-size-sm);">SJ</div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div style="display: flex; align-items: flex-start; margin-bottom: var(--space-8);">
+                                    <div style="width: 32px; height: 32px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: var(--space-8); font-size: var(--font-size-sm);">MS</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: var(--font-weight-medium); margin-bottom: var(--space-4);">Maria Santos</div>
+                                        <div style="background: var(--color-secondary); padding: var(--space-8) var(--space-12); border-radius: var(--radius-lg); margin-bottom: var(--space-4);">I'm pulling up to your street now! Be there in 1 minute. 🚗</div>
+                                        <div style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">5:33 AM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivery Stats -->
+                <div class="card" style="margin-bottom: var(--space-32);">
+                    <div class="card__header">
+                        <h4>📊 Delivery Metrics</h4>
+                    </div>
+                    <div class="card__body">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-16);">
+                            <div style="text-align: center; padding: var(--space-16); background: var(--color-bg-1); border-radius: var(--radius-lg);">
+                                <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--color-primary); margin-bottom: var(--space-4);">1.83 miles</div>
+                                <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">Total Distance</div>
+                            </div>
+                            <div style="text-align: center; padding: var(--space-16); background: var(--color-bg-2); border-radius: var(--radius-lg);">
+                                <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--color-primary); margin-bottom: var(--space-4);">1 hr 35 min</div>
+                                <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">Total Time</div>
+                            </div>
+                            <div style="text-align: center; padding: var(--space-16); background: var(--color-bg-3); border-radius: var(--radius-lg);">
+                                <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--color-success); margin-bottom: var(--space-4);">5:34 AM</div>
+                                <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">Pickup ETA</div>
+                            </div>
+                            <div style="text-align: center; padding: var(--space-16); background: var(--color-bg-4); border-radius: var(--radius-lg);">
+                                <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--color-primary); margin-bottom: var(--space-4);">7:04 AM</div>
+                                <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">Final Delivery</div>
+                            </div>
+                            <div style="text-align: center; padding: var(--space-16); background: var(--color-bg-5); border-radius: var(--radius-lg);">
+                                <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--color-primary); margin-bottom: var(--space-4);">⭐ 4.9</div>
+                                <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">Operator Rating</div>
+                            </div>
+                            <div style="text-align: center; padding: var(--space-16); background: var(--color-bg-6); border-radius: var(--radius-lg);">
+                                <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--color-success); margin-bottom: var(--space-4);">99.8%</div>
+                                <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">On-Time Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="card" style="background: var(--color-bg-3); border: 2px solid var(--color-primary);">
+                    <div class="card__body" style="text-align: center; padding: var(--space-32);">
+                        <h3 style="margin-bottom: var(--space-16);">Experience Luna Laundry yourself!</h3>
+                        <p style="color: var(--color-text-secondary); margin-bottom: var(--space-24);">Join thousands of satisfied customers enjoying premium laundry service with real-time tracking.</p>
+                        <div style="display: flex; justify-content: center; gap: var(--space-16); flex-wrap: wrap;">
+                            <button class="btn btn--primary btn--lg" onclick="showView('pricing')">Get Started</button>
+                            <button class="btn btn--outline btn--lg" onclick="showView('operators')">Become an Operator</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About View -->
+    <div id="about" class="view">
+        <div class="container">
+            <div class="section">
+                <h1 class="text-center mb-8">About Luna Laundry</h1>
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <p style="font-size: var(--font-size-xl); margin-bottom: var(--space-32);">We're revolutionizing laundry service with real-time tracking, flexible pricing, and exceptional customer experience.</p>
+                    
+                    <div class="features__grid" style="text-align: left;">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Our Mission</h3>
+                                <p>To make laundry service as convenient and transparent as ordering your favorite meal, with real-time tracking and flexible pricing for everyone.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Why Choose Us</h3>
+                                <p>We combine cutting-edge technology with reliable service, offering GPS tracking, live chat support, and pricing plans that fit any budget.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Our Commitment</h3>
+                                <p>Quality service, transparent pricing, and real-time communication. We treat your laundry with the same care you would.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Chat Widget -->
+    <div class="chat-widget" id="chat-widget">
+        <button class="chat-toggle" onclick="toggleChat()" id="chat-toggle">💬</button>
+        <div class="chat-window" id="chat-window">
+            <div class="chat-header">
+                <div>Luna Laundry - Chat with <span id="chat-partner-name">Support</span></div>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="chat-message chat-message--operator">
+                    <div class="chat-bubble chat-bubble--operator">Hi! I'm here to help you with your laundry service. How can I assist you today?</div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your message..." id="chat-input-field" onkeypress="handleChatKeyPress(event)">
+                <button class="btn btn--primary btn--sm" onclick="sendChatMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <script>
+        // Global App State
+        let currentView = 'home';
+        let selectedPlan = null;
+        let checkoutStep = 1;
+        let currentOrder = null;
+        let chatMessages = [];
+        let isChatOpen = false;
+        let isOperatorLoggedIn = false;
+        let operatorActiveJob = null;
+        let etaMinutes = 23;
+        let operatorPosition = { top: 30, left: 60 };
+        let demoEtaMinutes = 5;
+        let demoDistance = 1.41;
+        let currentMapView = 'aerial';
+        
+        // Luna Laundry Pricing Plans Data
+        const pricingPlans = {
+            promotion: {
+                name: 'Luna First-Timer Special',
+                price: '$10',
+                period: 'One-time',
+                limit: 'Limit 5 Lbs',
+                features: ['Premium pickup & delivery', 'Luna wash, dry & fold', '5 Lbs maximum', 'First-time customers only']
+            },
+            weekly: {
+                name: 'Luna Weekly',
+                price: '$30',
+                period: 'Weekly',
+                limit: 'Limit 5 Lbs',
+                features: ['Premium pickup & delivery', 'Luna wash, dry & fold', '5 Lbs per week', 'Cancel anytime']
+            },
+            monthly: {
+                name: 'Luna Monthly',
+                price: '$150',
+                period: 'Monthly',
+                limit: 'Limit 30 Lbs',
+                features: ['Premium pickup & delivery', 'Luna wash, dry & fold', '30 Lbs per month', 'Priority scheduling']
+            },
+            family: {
+                name: 'Luna Family Package',
+                price: '$300',
+                period: 'Monthly',
+                limit: 'Unlimited',
+                features: ['Premium pickup & delivery', 'Luna wash, dry & fold', 'Unlimited laundry', 'Priority Luna support', '24/7 service']
+            },
+            yearly: {
+                name: 'Luna Family Annual',
+                price: '$3000',
+                period: 'Yearly',
+                limit: 'Unlimited (2 Months Free)',
+                features: ['Premium pickup & delivery', 'Luna wash, dry & fold', 'Unlimited laundry', '2 months free', 'VIP Luna support', 'Express service']
+            },
+            enterprise: {
+                name: 'Luna Enterprise',
+                price: '$1500',
+                period: 'Monthly',
+                limit: 'Unlimited',
+                features: ['Premium pickup & delivery', 'Luna wash, dry & fold', 'Unlimited laundry', 'Dedicated Luna account manager', 'Custom scheduling', 'Bulk processing']
+            }
+        };
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set minimum date for pickup to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const dateInput = document.getElementById('pickup-date');
+            if (dateInput) {
+                dateInput.min = tomorrow.toISOString().split('T')[0];
+                dateInput.value = tomorrow.toISOString().split('T')[0];
+            }
+            
+            // Format card number input
+            const cardNumberInput = document.getElementById('card-number');
+            if (cardNumberInput) {
+                cardNumberInput.addEventListener('input', formatCardNumber);
+            }
+            
+            // Format expiry date input
+            const cardExpiryInput = document.getElementById('card-expiry');
+            if (cardExpiryInput) {
+                cardExpiryInput.addEventListener('input', formatExpiryDate);
+            }
+            
+            // Start real-time updates for dashboard and demo
+            setInterval(updateETA, 5000);
+            setInterval(updateOperatorPosition, 3000);
+            setInterval(updateDemoTracking, 3000);
+            
+            // Initialize operator signup form
+            const operatorSignupForm = document.getElementById('operator-signup-form');
+            if (operatorSignupForm) {
+                operatorSignupForm.addEventListener('submit', handleOperatorSignup);
+            }
+        });
+
+        // View Management
+        function showView(viewName) {
+            document.querySelectorAll('.view').forEach(view => {
+                view.classList.remove('active');
+            });
+            
+            document.getElementById(viewName).classList.add('active');
+            currentView = viewName;
+            
+            // Update navbar active state
+            document.querySelectorAll('.navbar__link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // If showing dashboard after checkout, set up real-time updates
+            if (viewName === 'dashboard' && currentOrder) {
+                updateOrderDetails();
+            }
+            
+            // Initialize demo page if showing demo
+            if (viewName === 'demo') {
+                initializeDemoPage();
+            }
+        }
+        
+        function initializeDemoPage() {
+            // Reset demo values
+            demoEtaMinutes = 5;
+            demoDistance = 1.41;
+            currentMapView = 'aerial';
+            
+            // Ensure proper initial display
+            setTimeout(function() {
+                updateDemoTracking();
+            }, 100);
+        }
+
+        // Pricing and Plan Selection
+        function selectPlan(planId) {
+            selectedPlan = planId;
+            showView('checkout');
+            updateSelectedPlanDisplay();
+        }
+
+        function updateSelectedPlanDisplay() {
+            if (!selectedPlan) return;
+            
+            const plan = pricingPlans[selectedPlan];
+            const detailsContainer = document.getElementById('selected-plan-details');
+            
+            detailsContainer.innerHTML = `
+                <h4>${plan.name}</h4>
+                <div style="font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); color: var(--color-primary); margin: var(--space-16) 0;">${plan.price} <span style="font-size: var(--font-size-base); font-weight: normal; color: var(--color-text-secondary);">${plan.period}</span></div>
+                <div style="margin-bottom: var(--space-16); color: var(--color-text-secondary);">${plan.limit}</div>
+                <ul style="list-style: none; padding: 0;">
+                    ${plan.features.map(feature => `<li style="padding: var(--space-4) 0; display: flex; align-items: center;"><span style="color: var(--color-success); margin-right: var(--space-8);">✓</span> ${feature}</li>`).join('')}
+                </ul>
+            `;
+            
+            updateOrderSummary();
+        }
+
+        function updateOrderSummary() {
+            if (!selectedPlan) return;
+            
+            const plan = pricingPlans[selectedPlan];
+            const summaryContainer = document.getElementById('order-summary-content');
+            
+            summaryContainer.innerHTML = `
+                <div style="margin-bottom: var(--space-16);">
+                    <strong>${plan.name}</strong>
+                    <div style="color: var(--color-text-secondary); font-size: var(--font-size-sm);">${plan.limit}</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-8);">
+                    <span>Subtotal:</span>
+                    <span>${plan.price}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-8);">
+                    <span>Service Fee:</span>
+                    <span>$0.00</span>
+                </div>
+                <hr style="border: none; border-top: 1px solid var(--color-border); margin: var(--space-16) 0;">
+                <div style="display: flex; justify-content: space-between; font-weight: var(--font-weight-bold); font-size: var(--font-size-lg);">
+                    <span>Total:</span>
+                    <span style="color: var(--color-primary);">${plan.price}</span>
+                </div>
+            `;
+        }
+
+        // Checkout Process
+        function nextCheckoutStep(step) {
+            // Validate current step
+            if (step === 2 && checkoutStep === 1) {
+                // No validation needed for step 1
+            } else if (step === 3 && checkoutStep === 2) {
+                const address = document.getElementById('address').value;
+                const city = document.getElementById('city').value;
+                const zip = document.getElementById('zip').value;
+                
+                if (!address || !city || !zip) {
+                    showToast('Please fill in all required address fields', 'error');
+                    return;
+                }
+            } else if (step === 4 && checkoutStep === 3) {
+                const pickupDate = document.getElementById('pickup-date').value;
+                const pickupTime = document.getElementById('pickup-time').value;
+                
+                if (!pickupDate || !pickupTime) {
+                    showToast('Please select a pickup date and time', 'error');
+                    return;
+                }
+            }
+            
+            // Hide current step
+            document.getElementById(`checkout-step-${checkoutStep}`).classList.add('hidden');
+            document.getElementById(`step-${checkoutStep}`).classList.remove('checkout-step--active');
+            document.getElementById(`step-${checkoutStep}`).classList.add('checkout-step--completed');
+            
+            // Show next step
+            checkoutStep = step;
+            document.getElementById(`checkout-step-${checkoutStep}`).classList.remove('hidden');
+            document.getElementById(`step-${checkoutStep}`).classList.add('checkout-step--active');
+        }
+
+        function completeOrder() {
+            // Validate payment info
+            const cardNumber = document.getElementById('card-number').value;
+            const cardExpiry = document.getElementById('card-expiry').value;
+            const cardCvv = document.getElementById('card-cvv').value;
+            const cardName = document.getElementById('card-name').value;
+            
+            if (!cardNumber || !cardExpiry || !cardCvv || !cardName) {
+                showToast('Please fill in all payment fields', 'error');
+                return;
+            }
+            
+            if (cardNumber.replace(/\s/g, '').length < 16) {
+                showToast('Please enter a valid card number', 'error');
+                return;
+            }
+            
+            // Simulate payment processing
+            showToast('Processing payment...', 'info');
+            
+            setTimeout(() => {
+                // Create order
+                currentOrder = {
+                    orderNumber: 'LW-2024-' + Math.floor(Math.random() * 1000).toString().padStart(3, '0'),
+                    plan: selectedPlan,
+                    address: document.getElementById('address').value,
+                    city: document.getElementById('city').value,
+                    zip: document.getElementById('zip').value,
+                    pickupDate: document.getElementById('pickup-date').value,
+                    pickupTime: document.getElementById('pickup-time').value,
+                    amount: pricingPlans[selectedPlan].price,
+                    status: 'confirmed',
+                    timestamp: new Date()
+                };
+                
+                showToast('Order placed successfully!', 'success');
+                showView('dashboard');
+                resetCheckout();
+            }, 2000);
+        }
+
+        function resetCheckout() {
+            checkoutStep = 1;
+            document.querySelectorAll('.checkout-step-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            document.getElementById('checkout-step-1').classList.remove('hidden');
+            
+            document.querySelectorAll('.checkout-step').forEach(step => {
+                step.classList.remove('checkout-step--active', 'checkout-step--completed');
+            });
+            document.getElementById('step-1').classList.add('checkout-step--active');
+        }
+
+        // Form Formatting
+        function formatCardNumber(e) {
+            let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            e.target.value = formattedValue;
+        }
+
+        function formatExpiryDate(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        }
+
+        // Dashboard and Real-time Updates
+        function updateOrderDetails() {
+            if (!currentOrder) return;
+            
+            document.getElementById('order-number').textContent = currentOrder.orderNumber;
+            document.getElementById('order-plan').textContent = pricingPlans[currentOrder.plan].name;
+            document.getElementById('order-amount').textContent = currentOrder.amount;
+            document.getElementById('order-address').innerHTML = `${currentOrder.address}<br>${currentOrder.city}, NY ${currentOrder.zip}`;
+            
+            const timeSlots = {
+                '9-12': '9:00 AM - 12:00 PM',
+                '12-15': '12:00 PM - 3:00 PM',
+                '15-18': '3:00 PM - 6:00 PM',
+                '18-21': '6:00 PM - 9:00 PM'
+            };
+            
+            document.getElementById('order-date').textContent = `${formatDate(currentOrder.pickupDate)}, ${timeSlots[currentOrder.pickupTime]}`;
+        }
+
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            if (date.toDateString() === today.toDateString()) {
+                return 'Today';
+            } else if (date.toDateString() === tomorrow.toDateString()) {
+                return 'Tomorrow';
+            } else {
+                return date.toLocaleDateString();
+            }
+        }
+
+        function updateETA() {
+            if (currentView === 'dashboard' && etaMinutes > 0) {
+                etaMinutes = Math.max(0, etaMinutes - Math.random() * 2);
+                document.getElementById('eta-time').textContent = Math.round(etaMinutes) + ' minutes';
+                
+                // Update timeline based on ETA
+                if (etaMinutes < 15) {
+                    // Update to "arrived at pickup"
+                    updateTimelineStep(2, 'Arrived at Pickup', 'Just arrived');
+                }
+                if (etaMinutes < 10) {
+                    // Update to "laundry collected"
+                    updateTimelineStep(3, 'Laundry Picked Up', 'Collected successfully');
+                }
+            }
+        }
+
+        function updateTimelineStep(stepIndex, title, time) {
+            const timeline = document.getElementById('order-timeline');
+            if (timeline) {
+                const items = timeline.children;
+                if (items[stepIndex]) {
+                    const marker = items[stepIndex].querySelector('.timeline__marker');
+                    const titleEl = items[stepIndex].querySelector('div div');
+                    const timeEl = items[stepIndex].querySelector('div div:last-child');
+                    
+                    marker.classList.remove('timeline__marker--active');
+                    marker.classList.add('timeline__marker--completed');
+                    
+                    if (items[stepIndex + 1]) {
+                        const nextMarker = items[stepIndex + 1].querySelector('.timeline__marker');
+                        nextMarker.classList.add('timeline__marker--active');
+                    }
+                }
+            }
+        }
+
+        function updateOperatorPosition() {
+            if (currentView === 'dashboard') {
+                const marker = document.getElementById('operator-marker');
+                if (marker) {
+                    // Slowly move operator towards customer
+                    operatorPosition.top += (70 - operatorPosition.top) * 0.02;
+                    operatorPosition.left += (30 - operatorPosition.left) * 0.02;
+                    
+                    marker.style.top = operatorPosition.top + '%';
+                    marker.style.left = operatorPosition.left + '%';
+                }
+            }
+        }
+
+        // Live Chat System
+        function toggleChat() {
+            isChatOpen = !isChatOpen;
+            const chatWindow = document.getElementById('chat-window');
+            const chatToggle = document.getElementById('chat-toggle');
+            
+            if (isChatOpen) {
+                chatWindow.classList.add('show');
+                chatToggle.textContent = '×';
+            } else {
+                chatWindow.classList.remove('show');
+                chatToggle.textContent = '💬';
+            }
+        }
+
+        function openChat() {
+            document.getElementById('chat-partner-name').textContent = 'Mike (Luna Operator)';
+            if (!isChatOpen) {
+                toggleChat();
+            }
+        }
+
+        function openOperatorChat() {
+            document.getElementById('chat-partner-name').textContent = 'Customer';
+            if (!isChatOpen) {
+                toggleChat();
+            }
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chat-input-field');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add customer message
+            addChatMessage(message, 'customer');
+            input.value = '';
+            
+            // Simulate operator response after 2-3 seconds
+            setTimeout(() => {
+                const responses = [
+                    "Thanks for your message! I'm currently on my way to pick up your laundry.",
+                    "I'll be there in about " + Math.round(etaMinutes) + " minutes.",
+                    "Is there anything specific I should know about the pickup?",
+                    "I'll let you know as soon as I arrive at your location.",
+                    "Thanks for choosing LaundryWash! I'll take great care of your items."
+                ];
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                addChatMessage(randomResponse, 'operator');
+            }, 2000 + Math.random() * 1000);
+        }
+
+        function addChatMessage(message, sender) {
+            const messagesContainer = document.getElementById('chat-messages');
+            const messageElement = document.createElement('div');
+            messageElement.className = `chat-message chat-message--${sender}`;
+            
+            messageElement.innerHTML = `
+                <div class="chat-bubble chat-bubble--${sender}">${message}</div>
+            `;
+            
+            messagesContainer.appendChild(messageElement);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            chatMessages.push({ message, sender, timestamp: new Date() });
+        }
+
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendChatMessage();
+            }
+        }
+
+        // Operator System
+        function showOperatorSignup() {
+            document.getElementById('operator-signup-section').classList.remove('hidden');
+            document.getElementById('operator-signup-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showOperatorLogin() {
+            // Simulate instant login for demo
+            isOperatorLoggedIn = true;
+            document.getElementById('operator-recruitment').classList.add('hidden');
+            document.getElementById('operator-dashboard').classList.remove('hidden');
+            showToast('Welcome back to Luna Laundry, Mike!', 'success');
+        }
+
+        function handleOperatorSignup(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const firstName = document.getElementById('operator-first-name').value;
+            const lastName = document.getElementById('operator-last-name').value;
+            const email = document.getElementById('operator-email').value;
+            
+            if (!firstName || !lastName || !email) {
+                showToast('Please fill in all required fields', 'error');
+                return;
+            }
+            
+            showToast('Application submitted successfully!', 'success');
+            showToast('You have been approved! Logging you in...', 'success');
+            
+            setTimeout(() => {
+                document.getElementById('operator-name').textContent = `${firstName} ${lastName}`;
+                showOperatorLogin();
+            }, 1500);
+        }
+
+        function logoutOperator() {
+            isOperatorLoggedIn = false;
+            document.getElementById('operator-recruitment').classList.remove('hidden');
+            document.getElementById('operator-dashboard').classList.add('hidden');
+            operatorActiveJob = null;
+            showToast('Logged out successfully', 'info');
+        }
+
+        function acceptJob(jobId) {
+            operatorActiveJob = {
+                id: jobId,
+                customer: 'John Doe',
+                address: '123 Main Street, New York, NY 10001',
+                plan: 'Monthly Subscription',
+                pay: '$30.00',
+                status: 'accepted'
+            };
+            
+            // Hide available jobs, show active job
+            document.getElementById('available-jobs').innerHTML = '<p style="color: var(--color-text-secondary); text-align: center; padding: var(--space-24);">No available jobs right now. Check back soon!</p>';
+            
+            const activeJobCard = document.getElementById('active-job-card');
+            activeJobCard.style.display = 'block';
+            
+            document.getElementById('active-job-details').innerHTML = `
+                <div class="job-card__details">
+                    <div class="job-card__detail">
+                        <span class="job-card__label">Customer:</span>
+                        <span>${operatorActiveJob.customer}</span>
+                    </div>
+                    <div class="job-card__detail">
+                        <span class="job-card__label">Address:</span>
+                        <span>${operatorActiveJob.address}</span>
+                    </div>
+                    <div class="job-card__detail">
+                        <span class="job-card__label">Plan:</span>
+                        <span>${operatorActiveJob.plan}</span>
+                    </div>
+                    <div class="job-card__detail">
+                        <span class="job-card__label">Pay:</span>
+                        <span style="color: var(--color-success); font-weight: var(--font-weight-medium);">${operatorActiveJob.pay}</span>
+                    </div>
+                    <div class="job-card__detail">
+                        <span class="job-card__label">Status:</span>
+                        <span class="status status--warning">En Route</span>
+                    </div>
+                </div>
+            `;
+            
+            showToast('Luna job accepted! Navigate to customer location.', 'success');
+        }
+
+        function updateJobStatus(status) {
+            if (!operatorActiveJob) return;
+            
+            const statusMap = {
+                'arrived': 'Arrived at Pickup',
+                'collected': 'Laundry Collected',
+                'processing': 'In Processing',
+                'delivery': 'Out for Delivery',
+                'delivered': 'Delivered'
+            };
+            
+            operatorActiveJob.status = status;
+            showToast(`Status updated: ${statusMap[status]}`, 'success');
+            
+            if (status === 'delivered') {
+                // Job completed
+                setTimeout(() => {
+                    document.getElementById('active-job-card').style.display = 'none';
+                    operatorActiveJob = null;
+                    
+                    // Add new available jobs
+                    document.getElementById('available-jobs').innerHTML = `
+                        <div class="job-card">
+                            <div class="job-card__header">
+                                <h5>Pickup &amp; Delivery</h5>
+                                <div class="status status--info">Available</div>
+                            </div>
+                            <div class="job-card__details">
+                                <div class="job-card__detail">
+                                    <span class="job-card__label">Customer:</span>
+                                    <span>Emily Rodriguez</span>
+                                </div>
+                                <div class="job-card__detail">
+                                    <span class="job-card__label">Pickup:</span>
+                                    <span>321 Broadway, Queens, NY</span>
+                                </div>
+                                <div class="job-card__detail">
+                                    <span class="job-card__label">Plan:</span>
+                                    <span>Family Package (Unlimited)</span>
+                                </div>
+                                <div class="job-card__detail">
+                                    <span class="job-card__label">Distance:</span>
+                                    <span>1.8 miles away</span>
+                                </div>
+                                <div class="job-card__detail">
+                                    <span class="job-card__label">Pay:</span>
+                                    <span style="color: var(--color-success); font-weight: var(--font-weight-medium);">$28.00</span>
+                                </div>
+                            </div>
+                            <button class="btn btn--primary btn--full-width" onclick="acceptJob('job-3')">Accept Job</button>
+                        </div>
+                    `;
+                    
+                    showToast('Job completed! Great work! 💰', 'success');
+                }, 1000);
+            }
+        }
+
+        // Demo Page Functions
+        function switchMapView(viewType) {
+            // Hide all map views
+            document.querySelectorAll('.demo-map-view').forEach(view => {
+                view.style.display = 'none';
+            });
+            
+            // Show selected view
+            document.getElementById(`map-${viewType}`).style.display = 'block';
+            
+            // Update button states
+            document.querySelectorAll('#map-controls button').forEach(btn => {
+                btn.classList.remove('btn--primary');
+                btn.classList.add('btn--outline');
+            });
+            
+            event.target.classList.remove('btn--outline');
+            event.target.classList.add('btn--primary');
+            
+            // Update current view description
+            const descriptions = {
+                'aerial': 'Aerial Overview - Birds eye view of SF',
+                'satellite': 'Satellite View - Detailed satellite imagery with street labels',
+                'complete': 'Complete Route - All three delivery legs visualization'
+            };
+            
+            document.getElementById('current-map-view').textContent = descriptions[viewType];
+            currentMapView = viewType;
+        }
+        
+        function updateDemoTracking() {
+            if (currentView === 'demo') {
+                // Gradually decrease ETA and distance
+                if (demoEtaMinutes > 0) {
+                    demoEtaMinutes = Math.max(0, demoEtaMinutes - (Math.random() * 0.3));
+                    demoDistance = Math.max(0, demoDistance - (Math.random() * 0.1));
+                    
+                    // Update ETA display
+                    const etaTimeEl = document.getElementById('demo-eta-time');
+                    const etaMinutesEl = document.getElementById('demo-eta-minutes');
+                    const distanceEl = document.getElementById('demo-distance');
+                    const trackingDistanceEl = document.getElementById('demo-tracking-distance');
+                    const trackingTimeEl = document.getElementById('demo-tracking-time');
+                    
+                    if (etaTimeEl && etaMinutesEl) {
+                        const minutes = Math.ceil(demoEtaMinutes);
+                        etaMinutesEl.textContent = minutes + ' minutes';
+                        
+                        // Calculate new ETA time
+                        const now = new Date();
+                        now.setMinutes(now.getMinutes() + minutes);
+                        const timeString = now.toLocaleTimeString('en-US', { 
+                            hour: 'numeric', 
+                            minute: '2-digit',
+                            hour12: true 
+                        });
+                        etaTimeEl.textContent = timeString;
+                    }
+                    
+                    if (distanceEl) {
+                        distanceEl.textContent = demoDistance.toFixed(1) + ' miles';
+                    }
+                    
+                    if (trackingDistanceEl) {
+                        trackingDistanceEl.textContent = demoDistance.toFixed(2) + ' miles';
+                    }
+                    
+                    if (trackingTimeEl) {
+                        trackingTimeEl.textContent = Math.ceil(demoEtaMinutes) + ' minutes';
+                    }
+                    
+                    // Update progress when ETA gets low
+                    if (demoEtaMinutes < 2) {
+                        updateDemoTimeline();
+                    }
+                }
+            }
+        }
+        
+        function updateDemoTimeline() {
+            // This would update the timeline stages as the demo progresses
+            // For now, it's a placeholder for more advanced timeline updates
+        }
+        
+        // Enhanced showView function to handle demo page initialization
+        const originalShowView = showView;
+        
+        // Toast Notifications
+        function showToast(message, type = 'info') {
+            const toastContainer = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast toast--${type}`;
+            toast.innerHTML = `
+                <div style="font-weight: var(--font-weight-medium);">${message}</div>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            // Show toast
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+            
+            // Hide toast after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    toastContainer.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
