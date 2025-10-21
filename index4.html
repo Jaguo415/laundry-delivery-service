@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laundry Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #fafbfc;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card p {
+            font-size: 2rem;
+            color: #2b90ef;
+        }
+
+        .form-section {
+            background-color: #fff;
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-section h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #2b90ef;
+        }
+
+        button {
+            background-color: #2b90ef;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        button:hover {
+            background-color: #1f7dd4;
+        }
+
+        .orders-section {
+            background-color: #fff;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .orders-section h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #fafbfc;
+            font-weight: 600;
+            color: #333;
+        }
+
+        tr:hover {
+            background-color: #fafbfc;
+        }
+
+        .status {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .status.pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status.processing {
+            background-color: #cfe2ff;
+            color: #084298;
+        }
+
+        .status.completed {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            margin-right: 5px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Laundry Management System</h1>
+
+        <!-- Dashboard Cards -->
+        <div class="dashboard">
+            <div class="card">
+                <h2>Total Orders</h2>
+                <p id="totalOrders">0</p>
+            </div>
+            <div class="card">
+                <h2>Pending Orders</h2>
+                <p id="pendingOrders">0</p>
+            </div>
+            <div class="card">
+                <h2>Processing</h2>
+                <p id="processingOrders">0</p>
+            </div>
+            <div class="card">
+                <h2>Completed</h2>
+                <p id="completedOrders">0</p>
+            </div>
+        </div>
+
+        <!-- Order Form -->
+        <div class="form-section">
+            <h2>Create New Order</h2>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="customerName">Customer Name:</label>
+                    <input type="text" id="customerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerEmail">Email:</label>
+                    <input type="email" id="customerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">Phone:</label>
+                    <input type="tel" id="customerPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="serviceType">Service Type:</label>
+                    <select id="serviceType" required>
+                        <option value="">Select Service</option>
+                        <option value="wash-fold">Wash & Fold</option>
+                        <option value="dry-clean">Dry Cleaning</option>
+                        <option value="iron">Iron Only</option>
+                        <option value="express">Express Service</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="weight">Weight (kg):</label>
+                    <input type="number" id="weight" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="pickupAddress">Pickup Address:</label>
+                    <textarea id="pickupAddress" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryAddress">Delivery Address:</label>
+                    <textarea id="deliveryAddress" rows="3" required></textarea>
+                </div>
+                <button type="submit">Create Order</button>
+            </form>
+        </div>
+
+        <!-- Orders List -->
+        <div class="orders-section">
+            <h2>All Orders</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Service</th>
+                        <th>Weight</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersTable">
+                    <!-- Orders will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Initialize orders array
+        let orders = JSON.parse(localStorage.getItem('laundryOrders')) || [];
+
+        // Update dashboard
+        function updateDashboard() {
+            const total = orders.length;
+            const pending = orders.filter(o => o.status === 'pending').length;
+            const processing = orders.filter(o => o.status === 'processing').length;
+            const completed = orders.filter(o => o.status === 'completed').length;
+
+            document.getElementById('totalOrders').textContent = total;
+            document.getElementById('pendingOrders').textContent = pending;
+            document.getElementById('processingOrders').textContent = processing;
+            document.getElementById('completedOrders').textContent = completed;
+        }
+
+        // Render orders table
+        function renderOrders() {
+            const tableBody = document.getElementById('ordersTable');
+            tableBody.innerHTML = '';
+
+            orders.forEach(order => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${order.id}</td>
+                    <td>${order.customerName}</td>
+                    <td>${order.serviceType}</td>
+                    <td>${order.weight} kg</td>
+                    <td><span class="status ${order.status}">${order.status.charAt(0).toUpperCase() + order.status.slice(1)}</span></td>
+                    <td>
+                        <button class="action-btn" onclick="updateStatus('${order.id}', 'processing')">Process</button>
+                        <button class="action-btn" onclick="updateStatus('${order.id}', 'completed')">Complete</button>
+                        <button class="action-btn" onclick="deleteOrder('${order.id}')">Delete</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Handle form submission
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const order = {
+                id: 'ORD' + Date.now(),
+                customerName: document.getElementById('customerName').value,
+                customerEmail: document.getElementById('customerEmail').value,
+                customerPhone: document.getElementById('customerPhone').value,
+                serviceType: document.getElementById('serviceType').value,
+                weight: document.getElementById('weight').value,
+                pickupAddress: document.getElementById('pickupAddress').value,
+                deliveryAddress: document.getElementById('deliveryAddress').value,
+                status: 'pending',
+                createdAt: new Date().toISOString()
+            };
+
+            orders.push(order);
+            localStorage.setItem('laundryOrders', JSON.stringify(orders));
+
+            // Reset form
+            this.reset();
+
+            // Update UI
+            updateDashboard();
+            renderOrders();
+
+            alert('Order created successfully!');
+        });
+
+        // Update order status
+        function updateStatus(orderId, newStatus) {
+            const order = orders.find(o => o.id === orderId);
+            if (order) {
+                order.status = newStatus;
+                localStorage.setItem('laundryOrders', JSON.stringify(orders));
+                updateDashboard();
+                renderOrders();
+            }
+        }
+
+        // Delete order
+        function deleteOrder(orderId) {
+            if (confirm('Are you sure you want to delete this order?')) {
+                orders = orders.filter(o => o.id !== orderId);
+                localStorage.setItem('laundryOrders', JSON.stringify(orders));
+                updateDashboard();
+                renderOrders();
+            }
+        }
+
+        // Initial render
+        updateDashboard();
+        renderOrders();
+    </script>
+</body>
+</html>
